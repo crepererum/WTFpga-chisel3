@@ -1,26 +1,37 @@
-pin_def := "icebreaker.pcf"
-device  := "up5k"
+pin_def    := "icebreaker.pcf"
+device     := "up5k"
+package    := "sg48"
+top_module := "WTFpga"
 
 default: timing
 
 setup:
     mkdir -p build
 
-synthesis: setup
+compile: setup
+    rm -f build/*.v
+    sbt "runMain wtfpga.MainDriver --target-dir build"
+
+synthesis: compile
+    rm -f build/*.synthesis.json build/synthesis.log
     yosys \
         -q \
         -l build/synthesis.log \
-        -p 'synth_ice40 -top top -json build/main.json' \
-        src/*.v
+        -p 'synth_ice40 -top {{top_module}} -json build/main.synthesis.json' \
+        build/*.v
 
 place_and_route: synthesis
+    rm -f build/main.asc
     nextpnr-ice40 \
+        --pcf-allow-unconstrained \
         --{{device}} \
-        --json build/main.json \
+        --package {{package}} \
+        --json build/main.synthesis.json \
         --pcf {{pin_def}} \
         --asc build/main.asc
 
 timing: place_and_route
+    rm -f build/main.rpt
     icetime \
         -d {{device}} \
         -m \
