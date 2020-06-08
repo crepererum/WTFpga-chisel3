@@ -24,7 +24,6 @@ synthesis: compile
 place_and_route: synthesis
     rm -f build/main.asc
     nextpnr-ice40 \
-        --pcf-allow-unconstrained \
         --{{device}} \
         --package {{package}} \
         --json build/main.synthesis.json \

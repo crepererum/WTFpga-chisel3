@@ -3,7 +3,8 @@ package wtfpga
 import chisel3._
 import chisel3.util._
 
-class WTFpga extends MultiIOModule {
+class WTFpga extends RawModule {
+  val clock   = IO(Input(Clock()))    suggestName("CLK")
   val i_btn1  = IO(Input(Bool()))     suggestName("BTN1")
   val i_btn2  = IO(Input(Bool()))     suggestName("BTN2")
   val i_btn3  = IO(Input(Bool()))     suggestName("BTN3")
@@ -13,48 +14,54 @@ class WTFpga extends MultiIOModule {
   val o_seg   = IO(Output(UInt(7.W))) suggestName("seg")
   val o_ca    = IO(Output(Bool()))    suggestName("ca")
 
-  val dispValue   = Wire(UInt(8.W))
-  val sum         = Wire(UInt(8.W))
-  val div         = Wire(UInt(8.W))
-  val disp0       = Wire(UInt(8.W))
-  val disp1       = Wire(UInt(8.W))
-  val storedValue = Reg(UInt(8.W))
+  // Mock reset signal
+  val nothing = Wire(Bool())
+  nothing := DontCare
 
-  when(i_btn_n) {
-    storedValue := i_sw
-  }
+  withClockAndReset(clock, nothing) {
+    val dispValue   = Wire(UInt(8.W))
+    val sum         = Wire(UInt(8.W))
+    val div         = Wire(UInt(8.W))
+    val disp0       = Wire(UInt(8.W))
+    val disp1       = Wire(UInt(8.W))
+    val storedValue = Reg(UInt(8.W))
 
-  sum := i_sw + storedValue
-  div := i_sw - storedValue
+    when(i_btn_n) {
+      storedValue := i_sw
+    }
 
-  when(i_btn3) {
-    dispValue := div
-  }.otherwise {
-    when(i_btn1) {
-      dispValue := sum
+    sum := i_sw + storedValue
+    div := i_sw - storedValue
+
+    when(i_btn3) {
+      dispValue := div
     }.otherwise {
-      when(i_btn2) {
-        dispValue := storedValue
+      when(i_btn1) {
+        dispValue := sum
       }.otherwise {
-        dispValue := i_sw
+        when(i_btn2) {
+          dispValue := storedValue
+        }.otherwise {
+          dispValue := i_sw
+        }
       }
     }
+
+    val nibble0 = Module(new NibbleToSevenSeg)
+    nibble0.io.nibblein := dispValue(3, 0)
+    disp0 := nibble0.io.segout
+
+    val nibble1 = Module(new NibbleToSevenSeg)
+    nibble1.io.nibblein := dispValue(7, 4)
+    disp1 := nibble1.io.segout
+
+    val display = Module(new SevenSegMux)
+    display.clock := ClockDivider(clock, 16)
+    display.io.disp0 := disp0
+    display.io.disp1 := disp1
+    o_seg := display.io.segout
+    o_ca := display.io.disp_sel
+
+    o_led := Cat(i_btn1, 0.U)
   }
-
-  val nibble0 = Module(new NibbleToSevenSeg)
-  nibble0.io.nibblein := dispValue(3, 0)
-  disp0 := nibble0.io.segout
-
-  val nibble1 = Module(new NibbleToSevenSeg)
-  nibble1.io.nibblein := dispValue(7, 4)
-  disp1 := nibble1.io.segout
-
-  val display = Module(new SevenSegMux)
-  display.clock := ClockDivider(clock, 16)
-  display.io.disp0 := disp0
-  display.io.disp1 := disp1
-  o_seg := display.io.segout
-  o_ca := display.io.disp_sel
-
-  o_led := Cat(i_btn1, 0.U)
 }
