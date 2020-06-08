@@ -1,7 +1,8 @@
-pin_def    := "icebreaker.pcf"
-device     := "up5k"
-package    := "sg48"
-top_module := "WTFpga"
+pin_def     := "icebreaker.pcf"
+device      := "up5k"
+package     := "sg48"
+top_package := "wtfpga"
+top_module  := "WTFpga"
 
 default: timing
 
@@ -10,7 +11,7 @@ setup:
 
 compile: setup
     rm -f build/*.v
-    sbt "runMain wtfpga.MainDriver --target-dir build"
+    sbt "runMain chisel3.stage.ChiselMain --module {{top_package}}.{{top_module}} --target-dir build"
 
 synthesis: compile
     rm -f build/*.synthesis.json build/synthesis.log

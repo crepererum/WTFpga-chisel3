@@ -2,7 +2,6 @@ package wtfpga
 
 import chisel3._
 import chisel3.util._
-import chisel3.stage.{ChiselGeneratorAnnotation, ChiselStage}
 
 class WTFpga extends MultiIOModule {
   val i_btn1  = IO(Input(Bool()))     suggestName("BTN1")
@@ -58,9 +57,4 @@ class WTFpga extends MultiIOModule {
   o_ca := display.io.disp_sel
 
   o_led := Cat(i_btn1, 0.U)
-}
-
-
-object MainDriver extends App {
-  (new ChiselStage).execute(args, Seq(ChiselGeneratorAnnotation(() => new WTFpga)))
 }
