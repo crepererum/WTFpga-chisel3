@@ -23,8 +23,8 @@ jobs:
         with:
           java-version: openjdk@1.14
       - name: Setup FPGA toolchain
-        run:
-          - wget -O /tmp/fpga.tar.gz https://github.com/open-tool-forge/fpga-toolchain/releases/download/nightly-$FPGA_TOOLCHAIN_NIGHTLY/fpga-toolchain-linux_x86_64-nightly-$FPGA_TOOLCHAIN_NIGHTLY.tar.gz
-          - tar xvf /tmp/fpga.tar.gz -C /tmp
+        run: |
+          wget -O /tmp/fpga.tar.gz https://github.com/open-tool-forge/fpga-toolchain/releases/download/nightly-$FPGA_TOOLCHAIN_NIGHTLY/fpga-toolchain-linux_x86_64-nightly-$FPGA_TOOLCHAIN_NIGHTLY.tar.gz
+          tar xvf /tmp/fpga.tar.gz -C /tmp
       - name: make timing
         run: env PATH=/tmp/fpga-toolchain/bin:$PATH make timing
