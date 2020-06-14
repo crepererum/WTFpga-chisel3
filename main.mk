@@ -1,4 +1,5 @@
 SCALA_SOURCE_FILES = $(shell find src/main -type f -name '*.scala')
+TOP_MODULE         = $(lastword $(subst ., ,$(SCALA_MODULE)))
 VERILOG_TOP_MODULE = build/$(TOP_MODULE).v
 YOSYS_OUTPUT       = build/main.synthesis.json
 NEXTPNR_OUTPUT     = build/main.asc
@@ -7,7 +8,7 @@ BITSTREAM_FILE     = build/main.bin
 
 $(VERILOG_TOP_MODULE): $(SCALA_SOURCE_FILES)
 	mkdir -p build && \
-	sbt "runMain chisel3.stage.ChiselMain --module $(TOP_PACKAGE).$(TOP_MODULE) --target-dir build"
+	sbt "runMain chisel3.stage.ChiselMain --module $(SCALA_MODULE) --target-dir build"
 
 $(YOSYS_OUTPUT): $(VERILOG_TOP_MODULE)
 	yosys \
