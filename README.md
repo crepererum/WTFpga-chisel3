@@ -4,6 +4,13 @@ This is a port of [WTFpga](https://github.com/esden/WTFpga) to [chisel3](https:/
 
 [![Build Status](https://github.com/crepererum/WTFpga-chisel3/workflows/CI/badge.svg)](https://github.com/crepererum/WTFpga-chisel3/actions?query=workflow%3ACI)
 
+
+## Requirements
+
+- [Scala](https://scala-lang.org/)
+- [Open Source FPGA Toolchain](https://github.com/open-tool-forge/fpga-toolchain)
+
+
 ## Usage
 To get the timing report just run:
 
