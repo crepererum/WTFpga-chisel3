@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+      - staging
+      - trying
+    tags:
+      - v*
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    env:
+      FPGA_TOOLCHAIN_NIGHTLY: 20200614
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Scala
+        uses: olafurpg/setup-scala@v5
+        with:
+          java-version: openjdk@1.14
+      - name: Setup FPGA toolchain
+        run:
+          - wget -O /tmp/fpga.tar.gz https://github.com/open-tool-forge/fpga-toolchain/releases/download/nightly-$FPGA_TOOLCHAIN_NIGHTLY/fpga-toolchain-linux_x86_64-nightly-$FPGA_TOOLCHAIN_NIGHTLY.tar.gz
+          - tar xvf /tmp/fpga.tar.gz -C /tmp
+      - name: make timing
+        run: env PATH=/tmp/fpga-toolchain/bin:$PATH make timing
