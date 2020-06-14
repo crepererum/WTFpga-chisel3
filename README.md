@@ -2,6 +2,8 @@
 
 This is a port of [WTFpga](https://github.com/esden/WTFpga) to [chisel3](https://www.chisel-lang.org/).
 
+[![Build Status](https://github.com/crepererum/WTFpga-chisel3/workflows/CI/badge.svg)](https://github.com/crepererum/WTFpga-chisel3/actions?query=workflow%3ACI)
+
 ## Usage
 To get the timing report just run:
 

@@ -1,0 +1,5 @@
+status = [
+  "check",
+]
+
+delete_merged_branches = true
