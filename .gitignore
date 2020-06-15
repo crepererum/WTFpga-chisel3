@@ -4,3 +4,4 @@ build/
 project/metals.sbt
 project/target/
 target/
+test_run_dir/
