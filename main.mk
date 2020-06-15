@@ -1,4 +1,5 @@
 SCALA_SOURCE_FILES = $(shell find src/main -type f -name '*.scala')
+SCALA_TEST_FILES   = $(shell find src/test -type f -name '*.scala')
 TOP_MODULE         = $(lastword $(subst ., ,$(SCALA_MODULE)))
 VERILOG_TOP_MODULE = build/$(TOP_MODULE).v
 YOSYS_OUTPUT       = build/main.synthesis.json
@@ -41,7 +42,10 @@ $(BITSTREAM_FILE): $(NEXTPNR_OUTPUT)
 flash: $(BITSTREAM_FILE)
 	iceprog $<
 
+test: $(SCALA_SOURCE_FILES) $(SCALA_TEST_FILES)
+	sbt "test"
+
 clean:
 	rm -rf build
 
-.PHONY: clean flash timing
+.PHONY: clean flash test timing

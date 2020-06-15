@@ -32,56 +32,56 @@ class NibbleToSevenSeg extends Module {
   })
 
   // default case
-  io.segout := ~Integer.parseInt("1001001", 2).U
+  io.segout := ~(Integer.parseInt("1001001", 2).U(7.W))
 
   switch(io.nibblein) {
     is(0x0.U) {
-      io.segout := ~Integer.parseInt("0111111", 2).U
+      io.segout := ~(Integer.parseInt("0111111", 2).U(7.W))
     }
     is(0x1.U) {
-      io.segout := ~Integer.parseInt("0000110", 2).U
+      io.segout := ~(Integer.parseInt("0000110", 2).U(7.W))
     }
     is(0x2.U) {
-      io.segout := ~Integer.parseInt("1011011", 2).U
+      io.segout := ~(Integer.parseInt("1011011", 2).U(7.W))
     }
     is(0x3.U) {
-      io.segout := ~Integer.parseInt("1001111", 2).U
+      io.segout := ~(Integer.parseInt("1001111", 2).U(7.W))
     }
     is(0x4.U) {
-      io.segout := ~Integer.parseInt("1100110", 2).U
+      io.segout := ~(Integer.parseInt("1100110", 2).U(7.W))
     }
     is(0x5.U) {
-      io.segout := ~Integer.parseInt("1101101", 2).U
+      io.segout := ~(Integer.parseInt("1101101", 2).U(7.W))
     }
     is(0x6.U) {
-      io.segout := ~Integer.parseInt("1111101", 2).U
+      io.segout := ~(Integer.parseInt("1111101", 2).U(7.W))
     }
     is(0x7.U) {
-      io.segout := ~Integer.parseInt("0000111", 2).U
+      io.segout := ~(Integer.parseInt("0000111", 2).U(7.W))
     }
     is(0x8.U) {
-      io.segout := ~Integer.parseInt("1111111", 2).U
+      io.segout := ~(Integer.parseInt("1111111", 2).U(7.W))
     }
     is(0x9.U) {
-      io.segout := ~Integer.parseInt("1101111", 2).U
+      io.segout := ~(Integer.parseInt("1101111", 2).U(7.W))
     }
     is(0xA.U) {
-      io.segout := ~Integer.parseInt("1110111", 2).U
+      io.segout := ~(Integer.parseInt("1110111", 2).U(7.W))
     }
     is(0xB.U) {
-      io.segout := ~Integer.parseInt("1111100", 2).U
+      io.segout := ~(Integer.parseInt("1111100", 2).U(7.W))
     }
     is(0xC.U) {
-      io.segout := ~Integer.parseInt("0111001", 2).U
+      io.segout := ~(Integer.parseInt("0111001", 2).U(7.W))
     }
     is(0xD.U) {
-      io.segout := ~Integer.parseInt("1011110", 2).U
+      io.segout := ~(Integer.parseInt("1011110", 2).U(7.W))
     }
     is(0xE.U) {
-      io.segout := ~Integer.parseInt("1111001", 2).U
+      io.segout := ~(Integer.parseInt("1111001", 2).U(7.W))
     }
     is(0xF.U) {
-      io.segout := ~Integer.parseInt("1110001", 2).U
+      io.segout := ~(Integer.parseInt("1110001", 2).U(7.W))
     }
   }
 }

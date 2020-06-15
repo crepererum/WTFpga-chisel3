@@ -18,6 +18,12 @@ To get the timing report just run:
 make
 ```
 
+To run the Chisel3/Scala unit tests, use:
+
+```sh
+make test
+```
+
 To flash the device, run:
 
 ```sh
