@@ -49,3 +49,4 @@ make flash
 - https://stackoverflow.com/questions/41427717/how-to-delete-clock-signal-on-chisel3-top-module
 - https://stackoverflow.com/questions/55209951/chisel3-how-to-create-a-register-without-reset-signal-in-rawmodule
 - https://stackoverflow.com/questions/59407466/how-to-override-extend-chisel-signal-naming/59411596#59411596
+- https://github.com/ucb-bar/chisel-testers2/issues/61
