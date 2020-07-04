@@ -1,3 +1,4 @@
+SCALA_BUILD_FILES  = build.sbt project/build.properties
 SCALA_SOURCE_FILES = $(shell find src/main -type f -name '*.scala')
 SCALA_TEST_FILES   = $(shell find src/test -type f -name '*.scala')
 TOP_MODULE         = $(lastword $(subst ., ,$(SCALA_MODULE)))
@@ -7,7 +8,7 @@ NEXTPNR_OUTPUT     = build/main.asc
 TIMING_REPORT      = build/main.rpt
 BITSTREAM_FILE     = build/main.bin
 
-$(VERILOG_TOP_MODULE): $(SCALA_SOURCE_FILES)
+$(VERILOG_TOP_MODULE): $(SCALA_BUILD_FILES) $(SCALA_SOURCE_FILES)
 	mkdir -p build && \
 	sbt "runMain chisel3.stage.ChiselMain --module $(SCALA_MODULE) --target-dir build"
 
