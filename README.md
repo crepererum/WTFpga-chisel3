@@ -39,6 +39,15 @@ make flash
    2. ["EditorConfig for VS Code"](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
 
 
+## Design
+
+### [Mill](http://www.lihaoyi.com/mill/) VS [SBT](https://www.scala-sbt.org/)
+
+| Task                    | Mill | SBT |
+|:----------------------- | ----:| ---:|
+| `make test` (no change) | 7s   | 16s |
+
+
 ## References
 
 - https://github.com/edwardcwang/chisel-multiclock-demo/
@@ -50,3 +59,4 @@ make flash
 - https://stackoverflow.com/questions/55209951/chisel3-how-to-create-a-register-without-reset-signal-in-rawmodule
 - https://stackoverflow.com/questions/59407466/how-to-override-extend-chisel-signal-naming/59411596#59411596
 - https://github.com/ucb-bar/chisel-testers2/issues/61
+- https://github.com/antonblanchard/chiselwatt/blob/e2c513555d025684a15c584ef96bed02cc30ca40/build.sc
