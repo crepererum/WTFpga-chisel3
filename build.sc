@@ -18,19 +18,16 @@ trait HasXsource211 extends ScalaModule {
 
 trait HasChisel3 extends ScalaModule {
   override def ivyDeps = Agg(
-    ivy"edu.berkeley.cs::chisel3:3.3.0"
+    ivy"edu.berkeley.cs::chisel3:3.3.2"
  )
 }
 
 trait HasChiselTests extends CrossSbtModule  {
   object test extends Tests {
     override def ivyDeps = Agg(
-      ivy"org.scalatest::scalatest:3.1.2",
-      ivy"edu.berkeley.cs::chisel-iotesters:1.4.1+",
-      ivy"edu.berkeley.cs::chiseltest:0.2.1+"
-    )
-    def repositories = super.repositories ++ Seq(
-      MavenRepository("https://oss.sonatype.org/content/repositories/snapshots")
+      ivy"org.scalatest::scalatest:3.2.0",
+      ivy"edu.berkeley.cs::chisel-iotesters:1.4.2",
+      ivy"edu.berkeley.cs::chiseltest:0.2.2"
     )
     def testFrameworks = Seq("org.scalatest.tools.Framework")
   }
@@ -38,7 +35,7 @@ trait HasChiselTests extends CrossSbtModule  {
 
 trait HasMacroParadise extends ScalaModule {
   // Enable macro paradise for @chiselName et al
-  val macroPlugins = Agg(ivy"org.scalamacros:::paradise:2.1.0")
+  val macroPlugins = Agg(ivy"org.scalamacros:::paradise:2.1.1")
   def scalacPluginIvyDeps = macroPlugins
   def compileIvyDeps = macroPlugins
 }

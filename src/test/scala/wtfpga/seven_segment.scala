@@ -1,13 +1,14 @@
 package wtfpga
 
 import org.scalatest._
+import org.scalatest.flatspec.AnyFlatSpec
 
 import chisel3._
 import chisel3.tester._
 import chisel3.experimental.BundleLiterals._
 
 
-class SevenSegMuxTesters extends FlatSpec with ChiselScalatestTester {
+class SevenSegMuxTesters extends AnyFlatSpec with ChiselScalatestTester {
     behavior of "SevenSegMux"
 
     it should "support 7 bits" in {
@@ -60,7 +61,7 @@ class SevenSegMuxTesters extends FlatSpec with ChiselScalatestTester {
 }
 
 
-class NibbleToSevenSegTesters extends FlatSpec with ChiselScalatestTester {
+class NibbleToSevenSegTesters extends AnyFlatSpec with ChiselScalatestTester {
     behavior of "NibbleToSevenSeg"
 
     it should "convert 1 correctly" in {

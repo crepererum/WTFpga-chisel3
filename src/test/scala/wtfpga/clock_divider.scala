@@ -4,6 +4,7 @@ package wtfpga
 package wtfpga
 
 import org.scalatest._
+import org.scalatest.flatspec.AnyFlatSpec
 
 import chisel3._
 import chisel3.tester._
@@ -45,12 +46,12 @@ class ClockDividerDemoWrapper extends Module {
   clock_divider.io.clock := clock
   clock_divider.io.reset := reset
   // Convert Clocks to Bools for testing.
-  io.clock_divBy4 := clock_divider.io.clock_divBy4.asUInt.toBool
-  io.clock_divBy6 := clock_divider.io.clock_divBy6.asUInt.toBool
+  io.clock_divBy4 := clock_divider.io.clock_divBy4.asUInt.asBool
+  io.clock_divBy6 := clock_divider.io.clock_divBy6.asUInt.asBool
 }
 
 
-class ClockDividerTesters extends FlatSpec with ChiselScalatestTester {
+class ClockDividerTesters extends AnyFlatSpec with ChiselScalatestTester {
     behavior of "ClockDivider"
 
     it should "divide correctly" in {
