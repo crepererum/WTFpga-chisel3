@@ -10,7 +10,7 @@ import chisel3._
 import chisel3.tester._
 import chisel3.experimental.BundleLiterals._
 import chiseltest.experimental.TestOptionBuilder._
-import treadle.{VerboseAnnotation, WriteVcdAnnotation}
+import treadle.WriteVcdAnnotation
 
 
 // This module does not have an implicit clock and reset since it is a
