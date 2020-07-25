@@ -6,6 +6,8 @@ import org.scalatest.flatspec.AnyFlatSpec
 import chisel3._
 import chisel3.tester._
 import chisel3.experimental.BundleLiterals._
+import chiseltest.experimental.TestOptionBuilder._
+import treadle.WriteVcdAnnotation
 
 
 class SevenSegMuxTesters extends AnyFlatSpec with ChiselScalatestTester {
@@ -24,19 +26,19 @@ class SevenSegMuxTesters extends AnyFlatSpec with ChiselScalatestTester {
     }
 
     it should "switch outputs" in {
-        test(new SevenSegMux()) { mod =>
+        test(new SevenSegMux()).withAnnotations(Seq(WriteVcdAnnotation)) { mod =>
             mod.io.disp0.poke(1.U)
             mod.io.disp1.poke(2.U)
 
-            mod.io.disp_sel.expect(false.B)
+            mod.io.disp_sel.expect(true.B)
             mod.io.segout.expect(1.U)
 
             mod.clock.step()
-            mod.io.disp_sel.expect(true.B)
+            mod.io.disp_sel.expect(false.B)
             mod.io.segout.expect(2.U)
 
             mod.clock.step()
-            mod.io.disp_sel.expect(false.B)
+            mod.io.disp_sel.expect(true.B)
             mod.io.segout.expect(1.U)
         }
     }

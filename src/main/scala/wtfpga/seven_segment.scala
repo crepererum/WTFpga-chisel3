@@ -13,14 +13,14 @@ class SevenSegMux extends Module {
 
   val current = RegInit(false.B)
 
-  io.disp_sel := current
-
   when(current) {
     io.segout := io.disp1
     current := false.B
+    io.disp_sel := false.B
   }.otherwise {
     io.segout := io.disp0
     current := true.B
+    io.disp_sel := true.B
   }
 }
 

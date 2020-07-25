@@ -24,6 +24,12 @@ To run the Chisel3/Scala unit tests, use:
 make test
 ```
 
+To get timing results (i.e. maximum frequency), run:
+
+```sh
+make timing
+```
+
 To flash the device, run:
 
 ```sh
