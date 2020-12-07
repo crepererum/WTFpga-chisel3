@@ -14,12 +14,12 @@ jobs:
   check:
     runs-on: ubuntu-latest
     env:
-      FPGA_TOOLCHAIN_NIGHTLY: 20200614
+      FPGA_TOOLCHAIN_NIGHTLY: 20201207
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup Scala
-        uses: olafurpg/setup-scala@v5
+        uses: olafurpg/setup-scala@v10
         with:
           java-version: openjdk@1.14
       - name: Setup FPGA toolchain
