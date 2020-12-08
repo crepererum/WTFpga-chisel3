@@ -18,16 +18,16 @@ trait HasXsource211 extends ScalaModule {
 
 trait HasChisel3 extends ScalaModule {
   override def ivyDeps = Agg(
-    ivy"edu.berkeley.cs::chisel3:3.3.2"
+    ivy"edu.berkeley.cs::chisel3:3.4.1"
  )
 }
 
 trait HasChiselTests extends CrossSbtModule  {
   object test extends Tests {
     override def ivyDeps = Agg(
-      ivy"org.scalatest::scalatest:3.2.0",
-      ivy"edu.berkeley.cs::chisel-iotesters:1.4.2",
-      ivy"edu.berkeley.cs::chiseltest:0.2.2"
+      ivy"org.scalatest::scalatest:3.2.2",
+      ivy"edu.berkeley.cs::chisel-iotesters:1.5.1",
+      ivy"edu.berkeley.cs::chiseltest:0.3.1"
     )
     def testFrameworks = Seq("org.scalatest.tools.Framework")
   }
