@@ -8,7 +8,7 @@ This is a port of [WTFpga](https://github.com/esden/WTFpga) to [chisel3](https:/
 ## Requirements
 
 - [Scala](https://scala-lang.org/)
-- [Open Source FPGA Toolchain](https://github.com/open-tool-forge/fpga-toolchain)
+- [OSS CAD Suite](https://github.com/YosysHQ/oss-cad-suite-build)
 
 
 ## Usage
