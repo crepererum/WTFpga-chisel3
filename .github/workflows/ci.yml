@@ -14,19 +14,19 @@ jobs:
   check:
     runs-on: ubuntu-latest
     env:
-      FPGA_TOOLCHAIN_NIGHTLY: 20201207
+      FPGA_TOOLCHAIN_NIGHTLY: 20220116
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup Scala
-        uses: olafurpg/setup-scala@v10
+        uses: olafurpg/setup-scala@v13
         with:
-          java-version: openjdk@1.14
+          java-version: openjdk@1.17
       - name: Setup FPGA toolchain
         run: |
-          wget -O /tmp/fpga.tar.gz https://github.com/open-tool-forge/fpga-toolchain/releases/download/nightly-$FPGA_TOOLCHAIN_NIGHTLY/fpga-toolchain-linux_x86_64-nightly-$FPGA_TOOLCHAIN_NIGHTLY.tar.gz
+          wget -O /tmp/fpga.tar.gz https://github.com/YosysHQ/oss-cad-suite-build/releases/download/2022-01-16/oss-cad-suite-linux-x64-$FPGA_TOOLCHAIN_NIGHTLY.tgz
           tar xvf /tmp/fpga.tar.gz -C /tmp
       - name: make test
-        run: env PATH=/tmp/fpga-toolchain/bin:$PATH make test
+        run: env PATH=/tmp/oss-cad-suite/bin:$PATH make test
       - name: make timing
-        run: env PATH=/tmp/fpga-toolchain/bin:$PATH make timing
+        run: env PATH=/tmp/oss-cad-suite/bin:$PATH make timing

@@ -4,9 +4,8 @@ import org.scalatest._
 import org.scalatest.flatspec.AnyFlatSpec
 
 import chisel3._
-import chisel3.tester._
 import chisel3.experimental.BundleLiterals._
-import chiseltest.experimental.TestOptionBuilder._
+import chiseltest._
 import treadle.WriteVcdAnnotation
 
 
