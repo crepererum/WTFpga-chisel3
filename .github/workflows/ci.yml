@@ -21,7 +21,7 @@ jobs:
       - name: Setup Scala
         uses: olafurpg/setup-scala@v13
         with:
-          java-version: openjdk@1.14
+          java-version: openjdk@1.17
       - name: Setup FPGA toolchain
         run: |
           wget -O /tmp/fpga.tar.gz https://github.com/open-tool-forge/fpga-toolchain/releases/download/nightly-$FPGA_TOOLCHAIN_NIGHTLY/fpga-toolchain-linux_x86_64-nightly-$FPGA_TOOLCHAIN_NIGHTLY.tar.gz
